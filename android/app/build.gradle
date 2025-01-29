@@ -79,11 +79,11 @@ import org.apache.tools.ant.taskdefs.condition.Os
  */
 
 project.ext.react = [
-    enableHermes: true,  // clean and rebuild if changing
+    enableHermes: true,  // Enable Hermes
+    bundleInDebug: true
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
