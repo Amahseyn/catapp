@@ -3,6 +3,8 @@ import { View, Animated, StyleSheet, Alert } from 'react-native';
 import AudioRecorder from './components/AudioRecorder';
 import AnimatedButton from './components/Button/AnimatedButton';
 import InstructionText from './components/Text/InstructionText';
+import TopIcons from './components/TopIcons';
+import ResultScreen from './components/ResultScreen';
 import { COLORS } from './constants/theme';
 import { uploadAudio } from './services/api';
 
@@ -18,6 +20,8 @@ const App = () => {
   const progressAnimRef = useRef(null);
   const isProcessingRef = useRef(false);
   const [completionAnim] = useState(new Animated.Value(0));
+  const [predictionResult, setPredictionResult] = useState(null);
+  const [showResult, setShowResult] = useState(false);
 
   const { startRecording, stopRecording } = AudioRecorder({ 
     setRecordingUri, 
@@ -25,14 +29,28 @@ const App = () => {
   });
 
   const handleUpload = async (uri) => {
-    if (!uri) return;
+    if (!uri) {
+      console.log('No URI provided for upload');
+      return;
+    }
     
     setIsUploading(true);
     try {
-      await uploadAudio(uri);
-      console.log('Upload successful');
+      console.log('Starting upload with URI:', uri);
+      const result = await uploadAudio(uri);
+      console.log('API Response:', result);
+      
+      if (result && result.results) {
+        const prediction = `${result.results.classification_result} - ${result.results.detection_result}`;
+        console.log('Setting prediction result:', prediction);
+        setPredictionResult(prediction);
+        console.log('Setting showResult to true');
+        setShowResult(true);
+      } else {
+        console.log('Invalid result format:', result);
+      }
     } catch (error) {
-      console.error('Upload failed:', error);
+      console.error('Upload Error:', error);
       Alert.alert('Error', 'Failed to upload audio. Please try again.');
     } finally {
       setIsUploading(false);
@@ -58,7 +76,7 @@ const App = () => {
     
     Animated.sequence([
       Animated.timing(scaleAnim, {
-        toValue: 1.3,
+        toValue: 1.2,
         duration: 100,
         useNativeDriver: true,
       }),
@@ -170,17 +188,34 @@ const App = () => {
     };
   }, [stopAnimations, stopRecording, isRecording]);
 
+  console.log('Current state:', { showResult, predictionResult }); // Debug log
+
   return (
     <View style={styles.container}>
-      <InstructionText />
-      <AnimatedButton 
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        isRecording={isRecording}
-        isUploading={isUploading}
-        scaleAnim={scaleAnim}
-        progress={progressAnim}
-      />
+      <View style={styles.content}>
+        <TopIcons />
+        <View style={styles.bottomSection}>
+          <InstructionText />
+          <AnimatedButton 
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+            isRecording={isRecording}
+            isUploading={isUploading}
+            scaleAnim={scaleAnim}
+            progress={progressAnim}
+          />
+        </View>
+      </View>
+      {showResult && predictionResult && (
+        <ResultScreen 
+          result={predictionResult}
+          onClose={() => {
+            console.log('Closing result screen');
+            setShowResult(false);
+            setPredictionResult(null);
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -188,9 +223,16 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.background,
+  },
+  content: {
+    flex: 1,
+    position: 'relative',
+  },
+  bottomSection: {
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: COLORS.background,
     paddingBottom: 50,
   },
 });

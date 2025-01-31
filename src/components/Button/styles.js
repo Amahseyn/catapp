@@ -11,8 +11,8 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   iconContainer: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
   },
