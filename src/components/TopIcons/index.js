@@ -14,27 +14,27 @@ const TopIcons = () => {
           resizeMode="contain"
         />
       </View>
-      <View style={styles.iconWrapper}>
+      {/* <View style={styles.iconWrapper}>
         <Text style={styles.text2}>History</Text>
         <Image 
           source={require('../../assets/icon1.png')} 
           style={styles.icon2}
           resizeMode="contain"
         />
-      </View>
-      <View style={styles.iconWrapper}>
+      </View> */}
+      {/* <View style={styles.iconWrapper}>
         <Text style={styles.text3}>Premium</Text>
         <Image 
           source={require('../../assets/icon2.png')} 
           style={styles.icon3}
           resizeMode="contain"
         />
-      </View>
+      </View> */}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

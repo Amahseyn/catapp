@@ -1,16 +1,18 @@
-const API_URL = 'http://192.168.145.16:8000';
+const API_URL = 'http://91.107.183.183:8000';
 
-export const uploadAudio = async (audioUri) => {
+export const uploadAudio = async (audioUri, language) => {
   try {
     console.log('=== Upload Process Started ===');
     console.log('Audio URI:', audioUri);
-    
+    console.log('Selected Language:', language);
+
     const formData = new FormData();
     formData.append('file', {
       uri: audioUri,
       type: 'audio/m4a',
       name: 'recording.m4a'
     });
+    formData.append('language', language); // Adding language parameter
 
     console.log('FormData created:', formData);
     console.log('Sending request to:', `${API_URL}/predict`);

@@ -7,6 +7,8 @@ import TopIcons from './components/TopIcons';
 import ResultScreen from './components/ResultScreen';
 import { COLORS } from './constants/theme';
 import { uploadAudio } from './services/api';
+import PerisanResultScreen from './components/ResultScreen/indexpersian';
+import LanguageButton from './components/Button/langbtn';
 
 const MAX_DURATION = 6000;
 
@@ -19,15 +21,35 @@ const App = () => {
   const timeoutRef = useRef(null);
   const progressAnimRef = useRef(null);
   const isProcessingRef = useRef(false);
+  const [language, setLanguage] = useState("English"); // State to store the selected language
+  const toggleRef = useRef(false);
   const [completionAnim] = useState(new Animated.Value(0));
   const [predictionResult, setPredictionResult] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
+  
+  const toggleLanguage = () => {
+    if (toggleRef.current) return; // Prevent multiple calls
+    toggleRef.current = true;
+  
+    // Toggle the language
+    setLanguage(prevLanguage => {
+      const newLanguage = prevLanguage === "English" ? "فارسی" : "English";
+      console.log("Language toggled! New language:", newLanguage);
+      return newLanguage;
+    });
+  
+    // Reset toggleRef after 300ms
+    setTimeout(() => {
+      toggleRef.current = false; // Reset after debounce delay
+    }, 300); // Adjust debounce time if necessary (300ms)
+  };
+  
   const { startRecording, stopRecording } = AudioRecorder({ 
     setRecordingUri, 
     setIsRecording 
   });
-
+  
   const handleUpload = async (uri) => {
     if (!uri) {
       console.log('No URI provided for upload');
@@ -37,7 +59,7 @@ const App = () => {
     setIsUploading(true);
     try {
       console.log('Starting upload with URI:', uri);
-      const result = await uploadAudio(uri);
+      const result = await uploadAudio(uri, language === "English" ? "en" : "fa");
       console.log('API Response:', result);
       
       if (result && result.results) {
@@ -141,17 +163,14 @@ const App = () => {
   }, [progressAnim, stopAnimations, handleStopRecording]);
 
   const handlePressIn = useCallback(async () => {
+    console.log('handlePressIn fired');
     if (isProcessingRef.current || isRecording) return;
-    
-    console.log('Starting recording and animations');
     isProcessingRef.current = true;
-    
     const result = await startRecording();
     if (result) {
       setIsRecording(true);
       startRecordingAnimation();
     }
-    
     isProcessingRef.current = false;
   }, [isRecording, startRecordingAnimation, startRecording]);
 
@@ -192,10 +211,14 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <LanguageButton onPress={toggleLanguage} language={language} />
+      </View>
       <View style={styles.content}>
         <TopIcons />
         <View style={styles.bottomSection}>
-          <InstructionText />
+        <InstructionText language={language} />
+
           <AnimatedButton 
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
