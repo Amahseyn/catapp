@@ -5,6 +5,7 @@ import AnimatedButton from './components/Button/AnimatedButton';
 import InstructionText from './components/Text/InstructionText';
 import TopIcons from './components/TopIcons';
 import ResultScreen from './components/ResultScreen'; // Ensure this supports the `language` prop
+import InfoScreen from './components/InfoScreen'; // Import the renamed InfoScreen
 import { COLORS } from './constants/theme';
 import { uploadAudio } from './services/api';
 import LanguageButton from './components/Button/langbtn';
@@ -25,18 +26,17 @@ const App = () => {
   const [completionAnim] = useState(new Animated.Value(0));
   const [predictionResult, setPredictionResult] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const [showInfoScreen, setShowInfoScreen] = useState(false); // Updated state variable name
 
   const toggleLanguage = () => {
     if (toggleRef.current) return; // Prevent multiple calls
     toggleRef.current = true;
-
     // Toggle the language
     setLanguage((prevLanguage) => {
       const newLanguage = prevLanguage === "English" ? "فارسی" : "English";
       console.log("Language toggled! New language:", newLanguage);
       return newLanguage;
     });
-
     // Reset toggleRef after 300ms
     setTimeout(() => {
       toggleRef.current = false; // Reset after debounce delay
@@ -53,13 +53,11 @@ const App = () => {
       console.log('No URI provided for upload');
       return;
     }
-
     setIsUploading(true);
     try {
       console.log('Starting upload with URI:', uri);
       const result = await uploadAudio(uri, language === "English" ? "en" : "fa");
       console.log('API Response:', result);
-
       if (result && result.results) {
         const prediction = `${result.results.classification_result} - ${result.results.detection_result}`;
         console.log('Setting prediction result:', prediction);
@@ -93,7 +91,6 @@ const App = () => {
 
   const playCompletionAnimation = useCallback(() => {
     completionAnim.setValue(0);
-
     Animated.sequence([
       Animated.timing(scaleAnim, {
         toValue: 1.2,
@@ -118,12 +115,10 @@ const App = () => {
 
   const handleStopRecording = useCallback(async () => {
     if (!isRecording) return;
-
     console.log('Stopping recording at handleStopRecording');
     stopAnimations();
     const uri = await stopRecording();
     setIsRecording(false);
-
     if (uri && uri !== 'Already stopped') {
       await handleUpload(uri);
       playCompletionAnimation();
@@ -132,7 +127,6 @@ const App = () => {
 
   const handlePressOut = useCallback(async () => {
     if (isProcessingRef.current) return;
-
     console.log('Stopping recording and animations');
     isProcessingRef.current = true;
     await handleStopRecording();
@@ -142,16 +136,13 @@ const App = () => {
   const startRecordingAnimation = useCallback(() => {
     stopAnimations();
     progressAnim.setValue(0);
-
     const animation = Animated.timing(progressAnim, {
       toValue: 1,
       duration: MAX_DURATION,
       useNativeDriver: false,
       easing: Animated.linear,
     });
-
     progressAnimRef.current = animation;
-
     animation.start();
     timeoutRef.current = setTimeout(() => {
       console.log('6 seconds reached, forcing stop');
@@ -208,31 +199,46 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <LanguageButton onPress={toggleLanguage} language={language} />
-      </View>
-      <View style={styles.content}>
-        <TopIcons />
-        <View style={styles.bottomSection}>
-          <InstructionText language={language} />
-          <AnimatedButton
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
-            isRecording={isRecording}
-            isUploading={isUploading}
-            scaleAnim={scaleAnim}
-            progress={progressAnim}
-          />
-        </View>
-      </View>
-      {showResult && predictionResult && (
-        <ResultScreen
-          result={predictionResult}
-          onClose={() => {
-            console.log('Closing result screen');
-            setShowResult(false);
-            setPredictionResult(null);
-          }}
+      {/* Main Content */}
+      {!showInfoScreen && (
+        <>
+          <View style={styles.header}>
+            <LanguageButton onPress={toggleLanguage} language={language} />
+          </View>
+          <View style={styles.content}>
+            {/* Updated onPress handler */}
+            <TopIcons onPress={() => setShowInfoScreen(true)} language={language === "English" ? "en" : "fa"} // Pass the language prop
+            />
+            <View style={styles.bottomSection}>
+              <InstructionText language={language} />
+              <AnimatedButton
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                isRecording={isRecording}
+                isUploading={isUploading}
+                scaleAnim={scaleAnim}
+                progress={progressAnim}
+              />
+            </View>
+          </View>
+          {showResult && predictionResult && (
+            <ResultScreen
+              result={predictionResult}
+              onClose={() => {
+                console.log('Closing result screen');
+                setShowResult(false);
+                setPredictionResult(null);
+              }}
+              language={language === "English" ? "en" : "fa"} // Pass the language prop
+            />
+          )}
+        </>
+      )}
+
+      {/* Full-Screen InfoScreen */}
+      {showInfoScreen && (
+        <InfoScreen
+          onClose={() => setShowInfoScreen(false)} // Close the screen
           language={language === "English" ? "en" : "fa"} // Pass the language prop
         />
       )}

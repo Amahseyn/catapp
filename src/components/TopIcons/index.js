@@ -1,35 +1,46 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
-const TopIcons = () => {
+const TopIcons = ({ onPress, language }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.iconWrapper}>
-        <Text style={styles.text1}>Info</Text>
+      {/* Info Icon */}
+      <TouchableOpacity onPress={onPress} style={styles.iconWrapper}>
+        <Text style={styles.text1}>
+          {language === 'en' ? 'Info' : 'اطلاعات'}
+        </Text>
         <Image 
           source={require('../../assets/icon3.png')} 
           style={styles.icon1}
           resizeMode="contain"
         />
-      </View>
-      {/* <View style={styles.iconWrapper}>
-        <Text style={styles.text2}>History</Text>
+      </TouchableOpacity>
+
+      {/* History Icon (Commented Out) */}
+      {/* <TouchableOpacity onPress={onPress} style={styles.iconWrapper}>
+        <Text style={styles.text2}>
+          {language === 'en' ? 'History' : 'تاریخچه'}
+        </Text>
         <Image 
           source={require('../../assets/icon1.png')} 
           style={styles.icon2}
           resizeMode="contain"
         />
-      </View> */}
-      {/* <View style={styles.iconWrapper}>
-        <Text style={styles.text3}>Premium</Text>
+      </TouchableOpacity> */}
+
+      {/* Premium Icon (Commented Out) */}
+      {/* <TouchableOpacity onPress={onPress} style={styles.iconWrapper}>
+        <Text style={styles.text3}>
+          {language === 'en' ? 'Premium' : 'پریمیوم'}
+        </Text>
         <Image 
           source={require('../../assets/icon2.png')} 
           style={styles.icon3}
           resizeMode="contain"
         />
-      </View> */}
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -90,4 +101,4 @@ export const styles = StyleSheet.create({
   },
 });
 
-export default TopIcons; 
+export default TopIcons;
