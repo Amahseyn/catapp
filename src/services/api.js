@@ -1,4 +1,4 @@
-const API_URL = 'http://91.107.183.183:8000';
+const API_URL = 'http://192.168.88.225:8000';
 
 export const uploadAudio = async (audioUri, language) => {
   try {
