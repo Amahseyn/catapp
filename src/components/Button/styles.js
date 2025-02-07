@@ -30,4 +30,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-}); 
+  progressBar: {
+    position: 'absolute', // Position the progress bar absolutely
+    top: -40,             // Adjust this value to move the progress bar above the button
+    width: '80%',         // Set the width of the progress bar
+    alignSelf: 'center',  // Center the progress bar horizontally
+  },
+});

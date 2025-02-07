@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const LanguageButton = ({ language, onPress }) => {
+const LanguageButton = ({ language, onPress, style }) => {
   const toggleRef = useRef(false); // Ref to prevent rapid clicks
 
   const toggleLanguage = () => {
@@ -19,30 +19,25 @@ const LanguageButton = ({ language, onPress }) => {
   };
 
   return (
-    <TouchableOpacity onPress={toggleLanguage} style={styles.container}>
-      <Text style={styles.text}>{language}</Text>
+    <TouchableOpacity onPress={toggleLanguage} style={[styles.button, style]}>
+      <Text style={styles.buttonText}>{language}</Text>
     </TouchableOpacity>
   );
 };
 
-
-
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50, // Adjust based on your layout
+  button: {
+    paddingHorizontal: 16, // Add horizontal padding
+    paddingVertical: 8, // Add vertical padding
+    backgroundColor: '#E57778', // Background color for the button
+    borderRadius: 20, // Rounded corners
+    alignItems: 'center', // Center the text horizontally
+    justifyContent: 'center', // Center the text vertically
   },
-  text: {
-    color: '#A40E0E',
-    fontSize: 16,
-    fontFamily: 'PatrickHand-Regular',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#A40E0E',
-    borderRadius: 10,
-    textAlign: 'center',
+  buttonText: {
+    color: 'white', // Text color
+    fontSize: 16, // Text size
+    fontFamily: 'PatrickHand-Regular', // Font family
   },
 });
 

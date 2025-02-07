@@ -14,6 +14,10 @@ const AnimatedButton = memo(({
 }) => {
   return (
     <View style={styles.buttonWrapper}>
+      {/* Progress Bar at the Top */}
+      {isRecording && <ProgressBar progress={progress} style={styles.progressBar} />}
+
+      {/* Button Content */}
       <Pressable
         onPressIn={onPressIn}
         onPressOut={onPressOut}
@@ -33,15 +37,14 @@ const AnimatedButton = memo(({
             fadeDuration={0}
           />
           {isUploading && (
-            <View style={[styles.uploadingOverlay, { backgroundColor: 'transparent' }]}>
+            <View style={styles.uploadingOverlay}>
               <ActivityIndicator color={COLORS.progressFill} size="large" />
             </View>
           )}
         </Animated.View>
       </Pressable>
-      {isRecording && <ProgressBar progress={progress} />}
     </View>
   );
 });
 
-export default AnimatedButton; 
+export default AnimatedButton;

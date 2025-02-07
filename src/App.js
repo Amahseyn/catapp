@@ -3,7 +3,7 @@ import { View, Animated, StyleSheet, Alert } from 'react-native';
 import AudioRecorder from './components/AudioRecorder';
 import AnimatedButton from './components/Button/AnimatedButton';
 import InstructionText from './components/Text/InstructionText';
-import TopIcons from './components/TopIcons';
+import TopIcons from './components/Button/TopIcons';
 import ResultScreen from './components/ResultScreen'; // Ensure this supports the `language` prop
 import InfoScreen from './components/InfoScreen'; // Import the renamed InfoScreen
 import { COLORS } from './constants/theme';
@@ -202,13 +202,22 @@ const App = () => {
       {/* Main Content */}
       {!showInfoScreen && (
         <>
-          <View style={styles.header}>
-            <LanguageButton onPress={toggleLanguage} language={language} />
-          </View>
-          <View style={styles.content}>
-            {/* Updated onPress handler */}
-            <TopIcons onPress={() => setShowInfoScreen(true)} language={language === "English" ? "en" : "fa"} // Pass the language prop
+          {/* Language Toggle Button (Top-Right) */}
+          <LanguageButton
+              onPress={toggleLanguage}
+              language={language}
+              style={styles.languageButton} // Add a style for positioning
             />
+  
+          {/* Top Icons (Top-Left) */}
+          <TopIcons
+            onPress={() => setShowInfoScreen(true)}
+            language={language === "English" ? "en" : "fa"}
+            style={styles.topIcons} // Add a style for positioning
+          />
+  
+          {/* Bottom Section */}
+          <View style={styles.content}>
             <View style={styles.bottomSection}>
               <InstructionText language={language} />
               <AnimatedButton
@@ -221,6 +230,8 @@ const App = () => {
               />
             </View>
           </View>
+  
+          {/* Result Screen */}
           {showResult && predictionResult && (
             <ResultScreen
               result={predictionResult}
@@ -229,37 +240,49 @@ const App = () => {
                 setShowResult(false);
                 setPredictionResult(null);
               }}
-              language={language === "English" ? "en" : "fa"} // Pass the language prop
+              language={language === "English" ? "en" : "fa"}
             />
           )}
         </>
       )}
-
+  
       {/* Full-Screen InfoScreen */}
       {showInfoScreen && (
         <InfoScreen
-          onClose={() => setShowInfoScreen(false)} // Close the screen
-          language={language === "English" ? "en" : "fa"} // Pass the language prop
+          onClose={() => setShowInfoScreen(false)}
+          language={language === "English" ? "en" : "fa"}
         />
       )}
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
+    position: 'relative', // Ensure this is set
+  },
+  languageButton: {
+    position: 'absolute', // Position the LanguageButton absolutely
+    top: 50,              // Distance from the top edge
+    right: 30,            // Distance from the right edge
+    zIndex: 10,           // Ensure it appears above other elements
+  },
+  topIcons: {
+    position: 'absolute', // Position the TopIcons absolutely
+    top: 50,              // Distance from the top edge
+    left: 30,             // Distance from the left edge
+    zIndex: 10,           // Ensure it appears above other elements
   },
   content: {
     flex: 1,
-    position: 'relative',
+    position: 'relative', // Ensure this is set
   },
   bottomSection: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 50,
+    paddingBottom: 90,
   },
 });
 

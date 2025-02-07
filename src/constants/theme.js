@@ -4,12 +4,14 @@ export const COLORS = {
   text: '#E57778',
   progressBackground: '#FFE3E3',
   progressFill: '#FF8787',
+  link : '#226FA7',
+  black:'#999999'
 };
 
 export const SIZES = {
   buttonSize: 80,
   progressBarWidth: 200,
-  progressBarHeight: 14,
+  progressBarHeight: 20,
 };
 
 export const FONTS = {
