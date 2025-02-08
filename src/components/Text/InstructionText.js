@@ -11,7 +11,7 @@ const InstructionText = ({ language }) => {
 };
 const styles = StyleSheet.create({
   text: {
-    fontFamily: FONTS.regular,
+    fontFamily: "",
     fontSize: 32,
     color: '#E57778',
     position: 'absolute',

@@ -6235,6 +6235,11 @@ react-native-gradle-plugin@^0.71.19:
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.19.tgz"
   integrity sha512-1dVk9NwhoyKHCSxcrM6vY6cxmojeATsBobDicX0ZKr7DgUF2cBQRTKsimQFvzH8XhOVXyH8p4HyDSZNIFI8OlQ==
 
+react-native-make@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/react-native-make/-/react-native-make-1.0.1.tgz"
+  integrity sha512-+Wo2JSp6NyeKleH9aZcdPsW7X8KiBOZkwx6L65UkPCDbk4FlcYd4yw+YIuK0SUVFkUaFHTU1n8LjIjFpT+YICA==
+
 react-native-permissions@^5.2.4:
   version "5.2.4"
   resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-5.2.4.tgz"

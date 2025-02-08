@@ -34,13 +34,13 @@ const App = () => {
     // Toggle the language
     setLanguage((prevLanguage) => {
       const newLanguage = prevLanguage === "English" ? "فارسی" : "English";
-      console.log("Language toggled! New language:", newLanguage);
+      // console.log("Language toggled! New language:", newLanguage);
       return newLanguage;
     });
     // Reset toggleRef after 300ms
     setTimeout(() => {
       toggleRef.current = false; // Reset after debounce delay
-    }, 300); // Adjust debounce time if necessary (300ms)
+    }, 50); // Adjust debounce time if necessary (300ms)
   };
 
   const { startRecording, stopRecording } = AudioRecorder({
@@ -55,14 +55,14 @@ const App = () => {
     }
     setIsUploading(true);
     try {
-      console.log('Starting upload with URI:', uri);
+      // console.log('Starting upload with URI:', uri);
       const result = await uploadAudio(uri, language === "English" ? "en" : "fa");
-      console.log('API Response:', result);
+      // console.log('API Response:', result);
       if (result && result.results) {
         const prediction = `${result.results.classification_result} - ${result.results.detection_result}`;
-        console.log('Setting prediction result:', prediction);
+        // console.log('Setting prediction result:', prediction);
         setPredictionResult(prediction);
-        console.log('Setting showResult to true');
+        // console.log('Setting showResult to true');
         setShowResult(true);
       } else {
         console.log('Invalid result format:', result);
@@ -112,21 +112,27 @@ const App = () => {
       startIdleAnimation();
     });
   }, [completionAnim, scaleAnim, startIdleAnimation]);
-
   const handleStopRecording = useCallback(async () => {
-    if (!isRecording) return;
+    if (!isRecording) {
+      console.log("handleStopRecording called but isRecording is already false");
+      return;
+    }
     console.log('Stopping recording at handleStopRecording');
     stopAnimations();
     const uri = await stopRecording();
+    console.log("Recording stopped, URI:", uri);
     setIsRecording(false);
     if (uri && uri !== 'Already stopped') {
       await handleUpload(uri);
       playCompletionAnimation();
     }
   }, [isRecording, stopAnimations, stopRecording, handleUpload, playCompletionAnimation]);
-
+  
   const handlePressOut = useCallback(async () => {
-    if (isProcessingRef.current) return;
+    if (isProcessingRef.current) {
+      console.log('handlePressOut ignored because isProcessingRef is true');
+      return;
+    }
     console.log('Stopping recording and animations');
     isProcessingRef.current = true;
     await handleStopRecording();
@@ -147,6 +153,7 @@ const App = () => {
     timeoutRef.current = setTimeout(() => {
       console.log('6 seconds reached, forcing stop');
       handleStopRecording();
+      
     }, MAX_DURATION);
   }, [progressAnim, stopAnimations, handleStopRecording]);
 
@@ -236,7 +243,7 @@ const App = () => {
             <ResultScreen
               result={predictionResult}
               onClose={() => {
-                console.log('Closing result screen');
+                // console.log('Closing result screen');
                 setShowResult(false);
                 setPredictionResult(null);
               }}
@@ -265,13 +272,13 @@ const styles = StyleSheet.create({
   languageButton: {
     position: 'absolute', // Position the LanguageButton absolutely
     top: 50,              // Distance from the top edge
-    right: 30,            // Distance from the right edge
+    left: 30,            // Distance from the right edge
     zIndex: 10,           // Ensure it appears above other elements
   },
   topIcons: {
     position: 'absolute', // Position the TopIcons absolutely
     top: 50,              // Distance from the top edge
-    left: 30,             // Distance from the left edge
+    right: 30,             // Distance from the left edge
     zIndex: 10,           // Ensure it appears above other elements
   },
   content: {

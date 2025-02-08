@@ -31,7 +31,7 @@ const AnimatedButton = memo(({
           ]}
         >
           <Image
-            source={require('../../assets/catclaw.png')}
+            source={require('../../../assets/catclaw.png')}
             style={styles.icon}
             resizeMode="contain"
             fadeDuration={0}

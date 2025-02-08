@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFS from 'react-native-fs';
 import { Platform, PermissionsAndroid } from 'react-native';
@@ -6,16 +6,19 @@ import { Platform, PermissionsAndroid } from 'react-native';
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AudioRecorder = ({ setRecordingUri, setIsRecording }) => {
+  // Use a ref to store the subscription from addRecordBackListener
+  const recordSubscriptionRef = useRef(null);
+
   const checkAndroidPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         {
-          title: "Microphone Permission",
-          message: "App needs access to your microphone to record audio",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
+          title: 'Microphone Permission',
+          message: 'App needs access to your microphone to record audio',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
         }
       );
       return granted === PermissionsAndroid.RESULTS.GRANTED;
@@ -28,10 +31,13 @@ const AudioRecorder = ({ setRecordingUri, setIsRecording }) => {
   const startRecording = async () => {
     console.log('Starting recording...');
     try {
-      // First ensure any existing recording is stopped
+      // Stop any active recording and remove any existing listener
       try {
         await audioRecorderPlayer.stopRecorder();
-        audioRecorderPlayer.removeRecordBackListener();
+        if (recordSubscriptionRef.current) {
+          recordSubscriptionRef.current.remove();
+          recordSubscriptionRef.current = null;
+        }
       } catch (e) {
         console.log('No active recording to stop');
       }
@@ -50,18 +56,15 @@ const AudioRecorder = ({ setRecordingUri, setIsRecording }) => {
       });
 
       console.log('Recording path:', path);
-      
+
       const uri = await audioRecorderPlayer.startRecorder(path);
       console.log('Started recording at:', uri);
-      
-      audioRecorderPlayer.addRecordBackListener((e) => {
+
+      // Save the listener subscription so we can remove it later.
+      recordSubscriptionRef.current = audioRecorderPlayer.addRecordBackListener((e) => {
         console.log('Recording duration:', e.currentPosition);
-        if (e.currentPosition >= 6000) {
-          console.log('Maximum duration reached in listener');
-          stopRecording();
-        }
       });
-      
+
       setIsRecording(true);
       return uri;
     } catch (error) {
@@ -74,14 +77,14 @@ const AudioRecorder = ({ setRecordingUri, setIsRecording }) => {
   const stopRecording = async () => {
     console.log('Stopping recording...');
     try {
-      // Remove listener first
-      audioRecorderPlayer.removeRecordBackListener();
-      
+      // Remove the listener explicitly using the subscription's remove() method.
+      if (recordSubscriptionRef.current) {
+        recordSubscriptionRef.current.remove();
+        recordSubscriptionRef.current = null;
+      }
       const result = await audioRecorderPlayer.stopRecorder();
       console.log('Recording stopped, result:', result);
-      
       setIsRecording(false);
-      
       if (result && result !== 'Already stopped') {
         setRecordingUri(result);
         return result;
