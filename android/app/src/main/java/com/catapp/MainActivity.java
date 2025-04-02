@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "catapp";
+    return "Cat Translator";
   }
 
   /**
