@@ -11,8 +11,6 @@ import {
 import { COLORS } from '../constants/theme';
 
 const InfoScreen = ({ onClose, language }) => {
-  console.log("language: " , language);
-  // Function to open links
   const openLink = (url) => {
     Linking.openURL(url).catch((err) =>
       console.error('Failed to open link:', err)
@@ -21,99 +19,96 @@ const InfoScreen = ({ onClose, language }) => {
 
   return (
     <View style={styles.container}>
-      {/* Close Button at the Top-Left */}
-
-
-      {/* Scrollable Content */}
       <ScrollView contentContainerStyle={styles.content}>
         {/* Title */}
         <Text style={styles.title}>
-          {language === 'en' ? 'About Me' : 'درباره من'}
+          {language === 'en' ? 'About Us' : 'درباره ما'}
         </Text>
         <TouchableOpacity onPress={onClose} style={styles.backbutton}>
-        <Text style={styles.backbuttonText}>
-          {language === 'en' ? 'Back' : 'برگشت'}
-        </Text>
-      </TouchableOpacity>
-        {/* Profile Image */}
+          <Text style={styles.backbuttonText}>
+            {language === 'en' ? 'Back' : 'برگشت'}
+          </Text>
+        </TouchableOpacity>
+
+        {/* App Logo */}
         <Image
-          source={require('../../assets/profile.jpg')} // Ensure this path is correct
-          style={styles.profileImage}
+          source={require('../../assets/app_logo.png')}
+          style={styles.appImage}
         />
 
-        {/* Name */}
-        <Text style={styles.name}>Mohammad Hossein Hashemi</Text>
-
-        {/* Description */}
+        {/* App Description */}
         <Text style={styles.description}>
           {language === 'en'
-            ? "Hi! I'm Mohammad Hossein, a passionate developer who loves building innovative apps. This app, Cat Voice Translator, is my way of helping you understand your feline friends better. I hope it brings you and your cat closer together!"
-            : "سلام! من محمدحسین هستم، یک توسعه‌دهنده علاقه‌مند که عاشق ساختن برنامه‌های نوآورانه است. این اپلیکیشن، مترجم صدای گربه، راه من برای کمک به شما در درک بهتر دوستان گربه‌تان است. امیدوارم این برنامه شما و گربه‌تان را به هم نزدیک‌تر کند!"}
+            ? "Cat Voice Translator uses advanced AI to understand your cat's sounds. Just record your cat's voice and get instant insights into their needs and emotions."
+            : "مترجم صدای گربه با هوش مصنوعی پیشرفته، صدای گربه شما را تحلیل می‌کند. کافی است صدای گربه خود را ضبط کنید تا نیازها و احساسات آن را درک کنید."}
         </Text>
 
-        {/* Mission and Vision */}
+        {/* Methodology */}
         <Text style={styles.sectionTitle}>
-          {language === 'en' ? 'My Mission' : 'هدف من'}
+          {language === 'en' ? 'Technology' : 'فناوری'}
         </Text>
         <Text style={styles.aboutText}>
           {language === 'en'
-            ? "My mission is to strengthen the bond between cats and their owners by using technology to decode cat sounds. I believe that understanding your cat's voice can lead to a happier and healthier relationship with your furry friend."
-            : "هدف من تقویت ارتباط بین گربه‌ها و صاحبان آن‌ها با استفاده از فناوری برای رمزگشایی صداهای گربه است. من معتقدم که درک صدای گربه‌تان می‌تواند به یک رابطه شادتر و سالم‌تر با دوست پشمالوی شما منجر شود."}
+            ? "1. Audio Processing: Converts cat sounds into spectrograms\n2. CNN Analysis: Our convolutional neural network classifies sounds into 10 core categories\n3. Real-Time Feedback: Immediate results with 88%+ accuracy"
+            : "۱. پردازش صدا: تبدیل صدا به طیف‌نگاره\n۲. تحلیل CNN: شبکه عصبی کانولوشنی صداها را در ۱۰ دسته اصلی طبقه‌بندی می‌کند\n۳. بازخورد فوری: نتایج با دقت ۸۸٪+ در لحظه"}
         </Text>
 
-        {/* How It Works */}
+        {/* How to Help Us */}
         <Text style={styles.sectionTitle}>
-          {language === 'en' ? 'How It Works' : 'چگونه کار می‌کند؟'}
+          {language === 'en' ? 'How to Help Us' : 'چگونه می‌توانید کمک کنید'}
         </Text>
         <Text style={styles.aboutText}>
           {language === 'en'
-            ? "Using advanced machine learning algorithms, this app analyzes your cat's sounds and matches them to a database of known vocalizations. Just record your cat's voice, and the app will give you real-time insights into their mood or needs."
-            : "این برنامه با استفاده از الگوریتم‌های پیشرفته یادگیری ماشین، صدای گربه شما را تحلیل کرده و آن را با یک پایگاه داده از صداهای شناخته شده مطابقت می‌دهد. فقط کافی است صدای گربه‌تان را ضبط کنید، و برنامه به شما پیشنهاد لحظه‌ای درباره حالات یا نیازهای آن می‌دهد."}
+            ? "1. Feedback: Share your experiences to improve our app\n2. Spread the Word: Tell other cat lovers about us\n3. Data Contribution: Help train our AI with your cat's sounds (anonymous)\n4. Rate Us: Leave a review if you enjoy the app"
+            : "۱. بازخورد: تجربیات خود را برای بهبود برنامه به اشتراک بگذارید\n۲. معرفی به دیگران: برنامه را به دوستانتان معرفی کنید\n۳. مشارکت داده: با صدای گربه خود به آموزش هوش مصنوعی کمک کنید (ناشناس)\n۴. امتیازدهی: اگر از برنامه راضی هستید به ما امتیاز دهید"}
         </Text>
 
-        {/* Why Choose This App */}
+        {/* Developer Section */}
         <Text style={styles.sectionTitle}>
-          {language === 'en' ? 'Why This App?' : 'چرا این برنامه؟'}
+          {language === 'en' ? 'Contact' : 'تماس با ما'}
         </Text>
-        <Text style={styles.aboutText}>
-          {language === 'en'
-            ? "This app is designed with love and care, focusing solely on understanding cat sounds. I continuously update it to ensure the best experience for you and your cat. Plus, it will always be free for my fellow Iranians!"
-            : "این برنامه با عشق و دقت طراحی شده و فقط بر روی درک صدای گربه‌ها تمرکز دارد. من به طور مداوم آن را به‌روزرسانی می‌کنم تا بهترین تجربه را برای شما و گربه‌تان فراهم کنم. به علاوه، تمام تلاش من اینه که این برنامه همیشه برای هموطنان عزیز ایرانی رایگان بمونه!"}
-        </Text>
+        <View style={styles.developerContainer}>
+          <Image
+            source={require('../../assets/profile.jpg')}
+            style={styles.developerImage}
+          />
+          <Text style={styles.developerName}>Mohammad Hashemi</Text>
+          <Text style={styles.emailText}>mhhashemi1379@gmail.com</Text>
+          <TouchableOpacity onPress={() => openLink('mailto:mhhashemi1379@gmail.com')}>
+            <Text style={styles.contactLink}>
+              {language === 'en' ? 'Contact Developer' : 'تماس با توسعه دهنده'}
+            </Text>
+          </TouchableOpacity>
+          
+          <Text style={styles.teamEmailText}>Leymer Team</Text>
+          <Text style={styles.emailText}>leymer.info@gmail.com</Text>
+          <TouchableOpacity onPress={() => openLink('mailto:leymer.info@gmail.com')}>
+            <Text style={styles.contactLink}>
+              {language === 'en' ? 'Contact Team' : 'تماس با تیم'}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-        {/* Future Plans */}
-        <Text style={styles.sectionTitle}>
-          {language === 'en' ? 'Future Plans' : 'برنامه‌های آینده'}
+        {/* Version */}
+        <Text style={styles.versionText}>
+          {language === 'en' 
+            ? '© 2025 Cat Voice Translator | v1.0.0' 
+            : '© ۱۴۰۴ مترجم صدای گربه | نسخه ۱.0.۰'}
         </Text>
-        <Text style={styles.aboutText}>
-          {language === 'en'
-            ? "I'm working on new features like breed-specific sound analysis and integration with smart pet devices. Your feedback is invaluable, and I hope to make this app even better with your support!"
-            : "من در حال کار روی ویژگی‌های جدیدی مثل تحلیل صدای مختص نژادهای خاص و ادغام با دستگاه‌های هوشمند حیوانات خانگی هستم. نظرات شما بسیار ارزشمند است، و امیدوارم با حمایت شما این برنامه را بهتر کنم!"}
-        </Text>
-
-        {/* Contact Information */}
-        <Text style={styles.sectionTitle}>
-          {language === 'en' ? 'Contact Me' : 'تماس با من'}
-        </Text>
-        <TouchableOpacity onPress={() => openLink('mailto:mhhashemi1379@gmail.com')}>
-          <Text style={styles.link}>mhhashemi1379@gmail.com</Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );
 };
 
-// Styles (unchanged)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
-    position: 'relative',
   },
   content: {
     paddingHorizontal: 20,
     paddingTop: 100,
-    paddingBottom: 20,
+    paddingBottom: 40,
   },
   title: {
     fontSize: 28,
@@ -122,49 +117,78 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-  profileImage: {
+  appImage: {
     width: 150,
     height: 150,
-    borderRadius: 75,
     alignSelf: 'center',
     marginBottom: 20,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: COLORS.text,
-    textAlign: 'center',
-    marginBottom: 10,
+    resizeMode: 'contain',
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
     color: COLORS.link,
-    marginBottom: 20,
+    marginBottom: 25,
+    textAlign: 'center',
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: COLORS.primary,
-    marginTop: 20,
+    marginTop: 25,
     marginBottom: 10,
+    textAlign: 'center',
   },
   aboutText: {
     fontSize: 16,
     lineHeight: 24,
     color: COLORS.link,
   },
-  link: {
+  developerContainer: {
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 20,
+  },
+  developerImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: COLORS.primary,
+  },
+  developerName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: COLORS.text,
+    marginBottom: 5,
+  },
+  teamEmailText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: COLORS.text,
+    marginTop: 15,
+    marginBottom: 3,
+  },
+  emailText: {
+    fontSize: 14,
+    color: COLORS.text,
+    marginTop: 3,
+    fontFamily: 'monospace',
+  },
+  contactLink: {
     fontSize: 16,
     color: COLORS.link,
     textDecorationLine: 'underline',
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
   },
   versionText: {
     fontSize: 14,
     color: COLORS.text,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 30,
+    opacity: 0.8,
   },
   backbutton: {
     position: 'absolute',
@@ -174,14 +198,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: '#E57778',
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
     zIndex: 10,
   },
   backbuttonText: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'PatrickHand-Regular', // Ensure this font is correctly imported
+    fontFamily: 'PatrickHand-Regular',
   },
 });
 

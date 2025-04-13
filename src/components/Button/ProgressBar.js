@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     position: 'absolute',
-    right: 0,
+    left: 0,
     top: 0,
     bottom: 0,
     backgroundColor: COLORS.progressFill,

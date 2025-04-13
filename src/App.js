@@ -66,7 +66,7 @@ const App = () => {
         // Alert.alert('Error', 'Unexpected response from server.');
       }
     } catch (error) {
-      // console.error('Upload Error:', error);
+      console.warn('Upload Error:', error);
       // Alert.alert('Error', 'Failed to upload audio. Please try again.');
     } finally {
       setIsUploading(false);
