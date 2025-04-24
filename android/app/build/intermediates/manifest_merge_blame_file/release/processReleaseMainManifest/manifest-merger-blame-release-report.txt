@@ -1,0 +1,124 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.catapp"
+4    android:versionCode="4"
+5    android:versionName="1.0.4" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+11-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:3:5-71
+11-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:3:22-68
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:4:5-67
+12-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:4:22-64
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:5:5-80
+13-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:5:22-78
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:6:5-79
+14-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:6:22-77
+15    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+15-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:7:5-81
+15-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:7:22-79
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[:react-native-community_netinfo] /home/mio/Documents/code/catapp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:7:5-79
+16-->[:react-native-community_netinfo] /home/mio/Documents/code/catapp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:7:22-76
+17    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+17-->[:react-native-community_netinfo] /home/mio/Documents/code/catapp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:8:5-76
+17-->[:react-native-community_netinfo] /home/mio/Documents/code/catapp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:8:22-73
+18
+19    <permission
+19-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+20        android:name="com.catapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+20-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+21        android:protectionLevel="signature" />
+21-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+22
+23    <uses-permission android:name="com.catapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+23-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+23-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+24
+25    <application
+25-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:8:5-31:19
+26        android:name="com.catapp.MainApplication"
+26-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:9:7-38
+27        android:allowBackup="false"
+27-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:13:7-34
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.9.0] /home/mio/.gradle/caches/8.8/transforms/ce4f5dec389711446a83e4dc2ffe53e3/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+29        android:extractNativeLibs="true"
+29-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:17:7-39
+30        android:icon="@mipmap/ic_launcher"
+30-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:11:7-41
+31        android:label="@string/app_name"
+31-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:10:7-39
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:12:7-52
+33        android:screenOrientation="portrait"
+33-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:15:7-43
+34        android:supportsRtl="true"
+34-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:18:7-33
+35        android:theme="@style/AppTheme"
+35-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:14:7-38
+36        android:usesCleartextTraffic="true" >
+36-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:16:7-42
+37        <activity
+37-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:19:7-30:18
+38            android:name="com.catapp.MainActivity"
+38-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:20:9-37
+39            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+39-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:22:9-118
+40            android:exported="true"
+40-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:25:9-32
+41            android:label="@string/app_name"
+41-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:21:9-41
+42            android:launchMode="singleTask"
+42-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:23:9-40
+43            android:windowSoftInputMode="adjustResize" >
+43-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:24:9-51
+44            <intent-filter>
+44-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:26:9-29:25
+45                <action android:name="android.intent.action.MAIN" />
+45-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:27:13-65
+45-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:27:21-62
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:28:13-73
+47-->/home/mio/Documents/code/catapp/android/app/src/main/AndroidManifest.xml:28:23-70
+48            </intent-filter>
+49        </activity>
+50
+51        <provider
+51-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+52            android:name="androidx.startup.InitializationProvider"
+52-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+53            android:authorities="com.catapp.androidx-startup"
+53-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+54            android:exported="false" >
+54-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+55            <meta-data
+55-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+56-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+57                android:value="androidx.startup" />
+57-->[androidx.emoji2:emoji2:1.2.0] /home/mio/.gradle/caches/8.8/transforms/7371c517d09178e5b3a6701c452d7bb8/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+58            <meta-data
+58-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mio/.gradle/caches/8.8/transforms/801ae63aa7ca7d1656b0fc5b53a5e7d4/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+59-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mio/.gradle/caches/8.8/transforms/801ae63aa7ca7d1656b0fc5b53a5e7d4/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+60                android:value="androidx.startup" />
+60-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mio/.gradle/caches/8.8/transforms/801ae63aa7ca7d1656b0fc5b53a5e7d4/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+61        </provider>
+62
+63        <meta-data
+63-->[com.facebook.soloader:soloader:0.11.0] /home/mio/.gradle/caches/8.8/transforms/e24043839ca682ddfdc90d96ffeb4dab/transformed/soloader-0.11.0/AndroidManifest.xml:12:9-14:37
+64            android:name="com.facebook.soloader.enabled"
+64-->[com.facebook.soloader:soloader:0.11.0] /home/mio/.gradle/caches/8.8/transforms/e24043839ca682ddfdc90d96ffeb4dab/transformed/soloader-0.11.0/AndroidManifest.xml:13:13-57
+65            android:value="false" />
+65-->[com.facebook.soloader:soloader:0.11.0] /home/mio/.gradle/caches/8.8/transforms/e24043839ca682ddfdc90d96ffeb4dab/transformed/soloader-0.11.0/AndroidManifest.xml:14:13-34
+66    </application>
+67
+68</manifest>

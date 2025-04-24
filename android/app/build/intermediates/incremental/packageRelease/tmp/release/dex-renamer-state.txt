@@ -1,0 +1,7 @@
+#Thu Apr 24 00:02:02 IRST 2025
+base.1=/home/mio/Documents/code/catapp/android/app/build/intermediates/global_synthetics_dex/release/mergeReleaseGlobalSynthetics/classes.dex
+path.1=classes.dex
+base.0=/home/mio/Documents/code/catapp/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex
